@@ -46,8 +46,31 @@ tasks = [
 ]
 
 @app.route('/todo/api/v1.0/tasks', methods=['GET'])
-@swag_from('get_tasks.yml')
 def get_tasks():
+    '''
+    This endpoint returns a task by ID
+    ---
+    tags:
+      - todo APIs
+    parameters:
+      - name: task_id
+        in: query
+        type: integer
+        required: true
+        description: id of the task
+      - name: done
+        in: query
+        type: bool
+        description: status of the task
+    responses:
+      500:
+        description: "Something went wrong"
+      200:
+        description: "Successfully got info"
+        schema:
+          $ref: '#/definitions/Tasks'
+        :return:
+    '''
     return jsonify({'tasks': tasks})
 
 
