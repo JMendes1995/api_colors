@@ -1,12 +1,13 @@
 from flask import Flask, jsonify, request
 from flasgger import Swagger
 from flasgger.utils import swag_from
-
+from flask_cors import CORS
 
 def main():
     """The main function for this script."""
     app.run(host='0.0.0.0', port='443', debug=True)
-
+    CORS(app)
+    
 app = Flask(__name__)
 app.config['SWAGGER'] = {
   "title": "Tasks API",
@@ -46,31 +47,8 @@ tasks = [
 ]
 
 @app.route('/todo/api/v1.0/tasks', methods=['GET'])
+@swag_from('get_tasks.yml')
 def get_tasks():
-    '''
-    This endpoint returns a task by ID
-    ---
-    tags:
-      - todo APIs
-    parameters:
-      - name: task_id
-        in: query
-        type: integer
-        required: true
-        description: id of the task
-      - name: done
-        in: query
-        type: bool
-        description: status of the task
-    responses:
-      500:
-        description: "Something went wrong"
-      200:
-        description: "Successfully got info"
-        schema:
-          $ref: '#/definitions/Tasks'
-        :return:
-    '''
     return jsonify({'tasks': tasks})
 
 

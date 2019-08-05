@@ -1,3 +1,4 @@
 setuptools
 flasgger
 gunicorn
+flask_cors
