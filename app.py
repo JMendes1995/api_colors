@@ -7,10 +7,14 @@ def main():
     """The main function for this script."""
     app.run(host='0.0.0.0', port='443', debug=True)
     CORS(app)
-    
 app = Flask(__name__)
 app.config['SWAGGER'] = {
   "title": "Tasks API",
+  "headers": [
+        ('Access-Control-Allow-Origin', '*'),
+        ('Access-Control-Allow-Methods', "GET, POST, PUT, DELETE, OPTIONS"),
+        ('Access-Control-Allow-Credentials', "true"),
+  ],
   "info": {
     "title": "Tasks API",
     "description": "Manage todo tasks",
