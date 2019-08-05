@@ -7,6 +7,7 @@ def main():
     """The main function for this script."""
     app.run(host='0.0.0.0', port='443', debug=True)
     CORS(app)
+
 app = Flask(__name__)
 app.config['SWAGGER'] = {
   "title": "Tasks API",
@@ -28,8 +29,9 @@ app.config['SWAGGER'] = {
     "version": "0.0.1"
   },
   "schemes": [
-    "http",
-    "https"
+    "https",
+    "http"
+
   ]
 }
 
